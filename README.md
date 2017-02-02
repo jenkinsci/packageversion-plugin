@@ -8,4 +8,4 @@
 
 ... then ...
 
-`open http://localhost:8080/jenkins`
+`open http://localhost:9090/jenkins`

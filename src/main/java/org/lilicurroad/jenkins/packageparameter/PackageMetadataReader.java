@@ -45,7 +45,7 @@ public class PackageMetadataReader {
             return new Builder(repoPath, repoType);
         }
 
-        public PackageMetadataReader build() throws JAXBException {
+        public PackageMetadataReader build() {
             return new PackageMetadataReader(this);
         }
     }

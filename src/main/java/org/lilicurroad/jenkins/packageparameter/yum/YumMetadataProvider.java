@@ -17,17 +17,17 @@ public class YumMetadataProvider implements PackageMetadataProvider {
     private YumPrimaryParser parser = new YumPrimaryParser();
 
     @Override
-    public List<PackageMetadata> extract(InputStream file) {
+    public List<PackageMetadata> extract(final InputStream file) {
         try {
             final Metadata metadata = parser.parse(new GZIPInputStream(file));
             return metadata.getPackages().stream().collect(Collectors.toList());
-        } catch (IOException e) {
+        } catch (final IOException e) {
             throw new RuntimeException("Couldn't retrieve Yum package metadata", e);
         }
     }
 
     @Override
-    public String getMetatdataFilePath(String repoPath) {
+    public String getMetatdataFilePath(final String repoPath) {
         try (final InputStream repoStream = new URL(String.format("%s/repodata/repomd.xml", repoPath)).openStream()) {
             final Optional<String> location = new YumRepomdParser().parse(repoStream).getData().stream()
                                                                    .filter(data -> data.getType().equals("primary"))

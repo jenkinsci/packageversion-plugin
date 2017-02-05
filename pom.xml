@@ -21,8 +21,11 @@
         <jenkins-test-harness.version>2.13</jenkins-test-harness.version>
     </properties>
 
-    <name>Package Parameter</name>
-    <description>TODO</description>
+    <name>Package Version</name>
+    <description>J
+        enkins plugin which when configured with repository and package name will add a build step requiring selection of the specified package version.
+        This package version is added as
+    </description>
     <url>https://wiki.jenkins-ci.org/display/JENKINS/packageversion</url>
 
     <licenses>
@@ -40,10 +43,17 @@
       </developer>
     </developers>
 
+<!--
+    <connection>scm:git:git://github.com/jenkinsci/${project.artifactId}-plugin.git</connection>
+    <developerConnection>scm:git:git@github.com:jenkinsci/${project.artifactId}-plugin.git</developerConnection>
+    <url>http://github.com/jenkinsci/${project.artifactId}-plugin</url>
+-->
+
     <scm>
-      <connection>scm:git:git://github.com/jenkinsci/${project.artifactId}-plugin.git</connection>
-      <developerConnection>scm:git:git@github.com:jenkinsci/${project.artifactId}-plugin.git</developerConnection>
-      <url>http://github.com/jenkinsci/${project.artifactId}-plugin</url>
+        <connection>scm:git:https://github.com/johnlayton/lilicurroad.git</connection>
+        <developerConnection>scm:git:https://github.com/johnlayton/lilicurroad.git</developerConnection>
+        <url>https://github.com/johnlayton/lilicurroad.git</url>
+        <tag>HEAD</tag>
     </scm>
 
     <repositories>

@@ -1,4 +1,4 @@
-package org.lilicurroad.jenkins.packageparameter.yum.model.common;
+package org.lilicurroad.jenkins.packageversion.yum.model.common;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

@@ -1,8 +1,8 @@
-package org.lilicurroad.jenkins.packageparameter.yum;
+package org.lilicurroad.jenkins.packageversion.yum;
 
-import org.lilicurroad.jenkins.packageparameter.PackageMetadata;
-import org.lilicurroad.jenkins.packageparameter.PackageMetadataProvider;
-import org.lilicurroad.jenkins.packageparameter.yum.model.common.Metadata;
+import org.lilicurroad.jenkins.packageversion.PackageMetadata;
+import org.lilicurroad.jenkins.packageversion.PackageMetadataProvider;
+import org.lilicurroad.jenkins.packageversion.yum.model.common.Metadata;
 
 import java.io.IOException;
 import java.io.InputStream;

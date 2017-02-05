@@ -1,6 +1,6 @@
-package org.lilicurroad.jenkins.packageparameter.yum;
+package org.lilicurroad.jenkins.packageversion.yum;
 
-import org.lilicurroad.jenkins.packageparameter.yum.model.repo.Repomd;
+import org.lilicurroad.jenkins.packageversion.yum.model.repo.Repomd;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

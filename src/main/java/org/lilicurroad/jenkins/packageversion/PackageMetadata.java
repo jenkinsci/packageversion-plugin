@@ -1,4 +1,4 @@
-package org.lilicurroad.jenkins.packageparameter;
+package org.lilicurroad.jenkins.packageversion;
 
 public interface PackageMetadata {
     String getPackageName();

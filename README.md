@@ -2,7 +2,7 @@
 
 A Jenkins plugin that will look up a Yum repo's database, and populate a Jenkins parameter dropdown. 
 
-The promary use case for this plugin is the configuration of deployable artifact versions when running Ansible.
+The primary use case for this plugin is the configuration of deployable artifact versions when running Ansible.
 
 
 ### Package 
@@ -40,3 +40,7 @@ open http://localhost:9090/jenkins
 
 [Click Here](http://localhost:9090/jenkins)
 
+
+### Usage
+
+[http://mirror.cisp.com/CentOS/6/os/i386/](http://mirror.cisp.com/CentOS/6/os/i386/)

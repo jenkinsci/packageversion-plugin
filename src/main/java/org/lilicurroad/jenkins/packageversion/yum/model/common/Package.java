@@ -1,7 +1,7 @@
-package org.lilicurroad.jenkins.packageparameter.yum.model.common;
+package org.lilicurroad.jenkins.packageversion.yum.model.common;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
-import org.lilicurroad.jenkins.packageparameter.PackageMetadata;
+import org.lilicurroad.jenkins.packageversion.PackageMetadata;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

@@ -1,6 +1,4 @@
-package org.lilicurroad.jenkins.packageparameter.yum.model.repo;
-
-import org.lilicurroad.jenkins.packageparameter.yum.model.common.Package;
+package org.lilicurroad.jenkins.packageversion.yum.model.repo;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

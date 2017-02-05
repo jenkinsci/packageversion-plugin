@@ -1,4 +1,4 @@
-package org.lilicurroad.jenkins.packageparameter;
+package org.lilicurroad.jenkins.packageversion;
 
 import hudson.Extension;
 import hudson.model.Descriptor;
@@ -8,7 +8,6 @@ import net.sf.json.JSONObject;
 import org.apache.commons.lang.StringUtils;
 import org.kohsuke.stapler.StaplerRequest;
 
-import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -17,7 +16,6 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Logger;
 
 @Extension
 public class RepositoryConfiguration extends GlobalConfiguration implements Serializable {

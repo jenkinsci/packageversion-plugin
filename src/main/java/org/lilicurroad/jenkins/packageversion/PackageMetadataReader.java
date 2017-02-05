@@ -1,8 +1,7 @@
-package org.lilicurroad.jenkins.packageparameter;
+package org.lilicurroad.jenkins.packageversion;
 
-import org.lilicurroad.jenkins.packageparameter.yum.YumMetadataProvider;
+import org.lilicurroad.jenkins.packageversion.yum.YumMetadataProvider;
 
-import javax.xml.bind.JAXBException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;

@@ -1,2 +1,2 @@
 @javax.xml.bind.annotation.XmlSchema(namespace = "http://linux.duke.edu/metadata/common", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
-package org.lilicurroad.jenkins.packageparameter.yum.model.common;
+package org.lilicurroad.jenkins.packageversion.yum.model.common;

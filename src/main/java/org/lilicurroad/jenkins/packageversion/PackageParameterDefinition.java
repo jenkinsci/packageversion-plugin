@@ -69,7 +69,7 @@ public class PackageParameterDefinition extends SimpleParameterDefinition {
 
         @Override
         public String getDisplayName() {
-            return "Package choice parameter";
+            return "Package version parameter";
         }
 
         @Override

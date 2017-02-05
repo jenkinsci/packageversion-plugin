@@ -44,3 +44,5 @@ open http://localhost:9090/jenkins
 ### Usage
 
 [http://mirror.cisp.com/CentOS/6/os/i386/](http://mirror.cisp.com/CentOS/6/os/i386/)
+
+![](src/doc/images/Step_01_MainMenu.png "Main Menu")

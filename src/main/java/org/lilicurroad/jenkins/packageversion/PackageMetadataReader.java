@@ -17,16 +17,17 @@ public class PackageMetadataReader {
         this.packageMetadataProvider = new YumMetadataProvider();
     }
 
-    public List<PackageMetadata> getPackages() throws IOException {
-        return packageMetadataProvider.extract(new URL(packageMetadataProvider.getMetatdataFilePath(repoPath)).openStream());
-    }
-
     public List<String> getPackageNames() throws IOException {
         return getPackages().stream().map(PackageMetadata::getPackageName).distinct().sorted().collect(Collectors.toList());
     }
 
     public List<String> getPackageVersions() throws IOException {
         return getPackages().stream().map(PackageMetadata::getPackageVersion).distinct().sorted().collect(Collectors.toList());
+    }
+
+    public List<PackageMetadata> getPackages() throws IOException {
+//        return packageMetadataProvider.extract(new URL(packageMetadataProvider.getMetatdataFilePath(repoPath)).openStream());
+        return packageMetadataProvider.extract(repoPath);
     }
 
     public static class Builder {

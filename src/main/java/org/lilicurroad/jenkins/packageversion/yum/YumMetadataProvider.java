@@ -2,7 +2,7 @@ package org.lilicurroad.jenkins.packageversion.yum;
 
 import org.lilicurroad.jenkins.packageversion.PackageMetadata;
 import org.lilicurroad.jenkins.packageversion.PackageMetadataProvider;
-import org.lilicurroad.jenkins.packageversion.yum.model.common.Metadata;
+import org.lilicurroad.jenkins.packageversion.yum.model.repo.Data;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,29 +14,35 @@ import java.util.zip.GZIPInputStream;
 
 public class YumMetadataProvider implements PackageMetadataProvider {
 
-    private YumPrimaryParser parser = new YumPrimaryParser();
+    private final YumPrimaryParser yumPrimaryParser = new YumPrimaryParser();
+    private final YumRepomdParser yumRepomdParser = new YumRepomdParser();
 
     @Override
-    public List<PackageMetadata> extract(final InputStream file) {
-        try {
-            final Metadata metadata = parser.parse(new GZIPInputStream(file));
-            return metadata.getPackages().stream().collect(Collectors.toList());
+    public List<PackageMetadata> extract(final String url) {
+        return getPackages(getMetatdataFilePath(url));
+    }
+
+    List<PackageMetadata> getPackages(final String repoPath) {
+        try (final InputStream repoStream = new GZIPInputStream(new URL(String.format("%s/repodata/repomd.xml", repoPath)).openStream())) {
+            return yumPrimaryParser.parse(repoStream).getPackages().stream().collect(Collectors.toList());
         } catch (final IOException e) {
             throw new RuntimeException("Couldn't retrieve Yum package metadata", e);
         }
     }
 
-    @Override
-    public String getMetatdataFilePath(final String repoPath) {
+    List<Data> getData(final String repoPath) {
         try (final InputStream repoStream = new URL(String.format("%s/repodata/repomd.xml", repoPath)).openStream()) {
-            final Optional<String> location = new YumRepomdParser().parse(repoStream).getData().stream()
-                                                                   .filter(data -> data.getType().equals("primary"))
-                                                                   .map(data -> data.getLocation().getHref())
-                                                                   .findFirst();
-            return String.format("%s/%s", repoPath, location.orElse("repodata/primary.xml.gz"));
+            return yumRepomdParser.parse(repoStream).getData().stream().collect(Collectors.toList());
         } catch (final IOException e) {
             throw new RuntimeException("Couldn't retrieve Yum repo metadata", e);
         }
     }
 
+    private String getMetatdataFilePath(final String repoPath) {
+        final Optional<String> location = getData(repoPath).stream()
+                                                           .filter(data -> data.getType().equals("primary"))
+                                                           .map(data -> data.getLocation().getHref())
+                                                           .findFirst();
+        return String.format("%s/%s", repoPath, location.orElse("repodata/primary.xml.gz"));
+    }
 }

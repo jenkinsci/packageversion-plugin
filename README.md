@@ -47,7 +47,7 @@ open http://localhost:9090/jenkins
 
 #### Step 1 - Configure the global repositories
 
-![](src/doc/images/Step_01_MainMenu.png "Main Menu" | width=50)
+![](src/doc/images/Step_01_MainMenu.png "Main Menu" | width=50px)
 ![](src/doc/images/Step_02_RepositoryConfiguration.png "Repository Configuration")
 
 #### Step 2 - Configure the project

@@ -43,10 +43,9 @@ open http://localhost:9090/jenkins
 
 ### Usage
 
-[http://mirror.cisp.com/CentOS/6/os/i386/](http://mirror.cisp.com/CentOS/6/os/i386/)
-
 #### Step 1 - Configure the global repositories
 
+<img src="src/doc/images/Step_01_MainMenu.png" width="48" />
 ![](src/doc/images/Step_01_MainMenu.png "Main Menu" =50x100)
 ![](src/doc/images/Step_02_RepositoryConfiguration.png "Repository Configuration")
 

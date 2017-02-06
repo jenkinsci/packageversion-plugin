@@ -45,8 +45,11 @@ open http://localhost:9090/jenkins
 
 #### Step 1 - Configure the global repositories
 
-Navigate to the main menu.
+Navigate to the main menu...
+
 ![](src/doc/images/Step_01_MainMenu.png "Main Menu")
+
+Select "Manage Jenkins" followed by "Configure System" then add one or more Yum repositories...
 
 ![](src/doc/images/Step_02_RepositoryConfiguration.png "Repository Configuration")
 

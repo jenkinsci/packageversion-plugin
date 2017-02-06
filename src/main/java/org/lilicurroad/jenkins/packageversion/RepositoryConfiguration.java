@@ -22,7 +22,7 @@ public class RepositoryConfiguration extends GlobalConfiguration implements Seri
 
     private static final long serialVersionUID = 1L;
 
-    private final Map<String, Repository> repos = new HashMap<String, Repository>();
+    private final Map<String, Repository> repos = new HashMap<>();
 
     public RepositoryConfiguration() {
         load();
@@ -33,7 +33,7 @@ public class RepositoryConfiguration extends GlobalConfiguration implements Seri
     }
 
     @Override
-    public boolean configure(StaplerRequest req, JSONObject formData) throws Descriptor.FormException {
+    public boolean configure(final StaplerRequest req, final JSONObject formData) throws Descriptor.FormException {
         repos.clear();
 
         final Object repoJson = formData.get("repos");
@@ -50,11 +50,7 @@ public class RepositoryConfiguration extends GlobalConfiguration implements Seri
         return true;
     }
 
-    /**
-     * adds a dynamic permission configuration with the data extracted form the jsonObject.
-     * 
-     */
-    private void addRepo(StaplerRequest req, JSONObject jsonObject) {
+    private void addRepo(final StaplerRequest req, final JSONObject jsonObject) {
         final Repository repo = req.bindJSON(Repository.class, jsonObject);
         if (repo != null) {
             if (!StringUtils.isBlank(repo.getUrl())) {
@@ -77,11 +73,10 @@ public class RepositoryConfiguration extends GlobalConfiguration implements Seri
     public static class ValueComparator implements Comparator<String> {
 
         Map<String, Double> base;
-        public ValueComparator(Map<String, Double> base) {
+        public ValueComparator(final Map<String, Double> base) {
             this.base = base;
         }
 
-        // Note: this comparator imposes orderings that are inconsistent with equals.    
         public int compare(String a, String b) {
             if (base.get(a) >= base.get(b)) {
                 return -1;

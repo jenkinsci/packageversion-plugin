@@ -56,7 +56,7 @@ open http://localhost:9090/jenkins
 ![](src/doc/images/Step_03_CreateProject.png "Create Project")
 ![](src/doc/images/Step_04_AddBuildParameter.png "Add Build Paramter")
 ![](src/doc/images/Step_05_AddPackageVersionParameter.png "Add Package Version Paramter")
-![](src/doc/images/Step_06_ConfigurePackageVersionParameter "Configure Package Version Paramter")
+![](src/doc/images/Step_06_ConfigurePackageVersionParameter.png "Configure Package Version Paramter")
 ![](src/doc/images/Step_07_ConfigureBuild.png "Configure Build")
 
 #### Step 3 - Build the project

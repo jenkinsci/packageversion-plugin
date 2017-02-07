@@ -23,7 +23,7 @@ public class YumMetadataProvider implements PackageMetadataProvider {
     }
 
     List<PackageMetadata> getPackages(final String repoPath) {
-        try (final InputStream repoStream = new GZIPInputStream(new URL(String.format("%s/repodata/repomd.xml", repoPath)).openStream())) {
+        try (final InputStream repoStream = new GZIPInputStream(new URL(repoPath).openStream())) {
             return yumPrimaryParser.parse(repoStream).getPackages().stream().collect(Collectors.toList());
         } catch (final IOException e) {
             throw new RuntimeException("Couldn't retrieve Yum package metadata", e);

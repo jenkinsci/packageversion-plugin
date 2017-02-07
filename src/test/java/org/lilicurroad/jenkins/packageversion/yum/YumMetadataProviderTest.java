@@ -1,14 +1,16 @@
 package org.lilicurroad.jenkins.packageversion.yum;
 
-import org.hamcrest.BaseMatcher;
-import org.hamcrest.Description;
-import org.hamcrest.Matcher;
 import org.junit.Test;
+import org.lilicurroad.jenkins.packageversion.PackageMetadata;
 import org.lilicurroad.jenkins.packageversion.yum.model.repo.Data;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
+import static org.lilicurroad.jenkins.packageversion.yum.DataMatcher.dataByType;
+import static org.lilicurroad.jenkins.packageversion.yum.ListDataMatcher.listData;
+import static org.lilicurroad.jenkins.packageversion.yum.ListPackageMetadataMatcher.listPackageMetadata;
+import static org.lilicurroad.jenkins.packageversion.yum.PackageMetadataMatcher.packageName;
 
 public class YumMetadataProviderTest {
 
@@ -20,23 +22,17 @@ public class YumMetadataProviderTest {
         final YumMetadataProvider yumMetadataProvider = new YumMetadataProvider();
         final List<Data> data = yumMetadataProvider.getData("classpath:org/lilicurroad/jenkins/packageversion/yum");
 
-        assertThat(data, new BaseMatcher<List<Data>>() {
-            @Override
-            public boolean matches(Object o) {
-                return o instanceof List && ((List<Data>)o).size() == 8;
-            }
+        assertThat(data, listData(dataByType("primary"), dataByType("other")));
+    }
 
-            @Override
-            public void describeMismatch(Object o,
-                                         Description description) {
+    @Test
+    public void shouldParsePrimary() throws Exception {
 
-            }
+        System.setProperty("java.protocol.handler.pkgs", "org.lilicurroad.jenkins.packageversion.yum");
 
-            @Override
-            public void describeTo(Description description) {
+        final YumMetadataProvider yumMetadataProvider = new YumMetadataProvider();
+        final List<PackageMetadata> packages = yumMetadataProvider.getPackages("classpath:org/lilicurroad/jenkins/packageversion/yum/repodata/primary.xml.gz");
 
-            }
-        });
-
+        assertThat(packages, listPackageMetadata(packageName("package_1"), packageName("package_2")));
     }
 }

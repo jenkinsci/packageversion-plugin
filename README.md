@@ -5,6 +5,10 @@ A Jenkins plugin that will look up a Yum repo's database, and populate a Jenkins
 The primary use case for this plugin is the configuration of deployable artifact versions when running Ansible.
 
 
+### Travis CI
+[![Build Status](https://travis-ci.org/johnlayton/lilicurroad.png?branch=master)](https://travis-ci.org/johnlayton/lilicurroad)
+
+
 ### Package 
 
 ```bash

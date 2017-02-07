@@ -31,6 +31,5 @@ public class YumRepomdParser {
             LOGGER.error("Cannot communicate with the Yum repomd repository xml", e);
             throw new RuntimeException(e);
         }
-
     }
 }

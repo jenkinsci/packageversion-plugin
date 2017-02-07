@@ -9,13 +9,10 @@ import org.apache.commons.lang.StringUtils;
 import org.kohsuke.stapler.StaplerRequest;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Extension
 public class RepositoryConfiguration extends GlobalConfiguration implements Serializable {
@@ -33,7 +30,8 @@ public class RepositoryConfiguration extends GlobalConfiguration implements Seri
     }
 
     @Override
-    public boolean configure(final StaplerRequest req, final JSONObject formData) throws Descriptor.FormException {
+    public boolean configure(final StaplerRequest req,
+                             final JSONObject formData) throws Descriptor.FormException {
         repos.clear();
 
         final Object repoJson = formData.get("repos");
@@ -50,7 +48,8 @@ public class RepositoryConfiguration extends GlobalConfiguration implements Seri
         return true;
     }
 
-    private void addRepo(final StaplerRequest req, final JSONObject jsonObject) {
+    private void addRepo(final StaplerRequest req,
+                         final JSONObject jsonObject) {
         final Repository repo = req.bindJSON(Repository.class, jsonObject);
         if (repo != null) {
             if (!StringUtils.isBlank(repo.getUrl())) {
@@ -59,30 +58,12 @@ public class RepositoryConfiguration extends GlobalConfiguration implements Seri
         }
     }
 
-    public Collection<Repository> getRepos() {
-        List<Repository> r = new ArrayList<Repository>();
-        r.addAll(repos.values());
-        Collections.sort(r);
-        return r;
+    public List<Repository> getRepos() {
+        return repos.values().stream().sorted().collect(Collectors.toList());
     }
 
     public Map<String, Repository> getRepositoryMap() {
         return repos;
     }
 
-//    public static class ValueComparator implements Comparator<String> {
-//
-//        Map<String, Double> base;
-//        public ValueComparator(final Map<String, Double> base) {
-//            this.base = base;
-//        }
-//
-//        public int compare(String a, String b) {
-//            if (base.get(a) >= base.get(b)) {
-//                return -1;
-//            } else {
-//                return 1;
-//            }
-//        }
-//    }
 }

@@ -12,6 +12,7 @@ import javax.xml.transform.stream.StreamSource;
 import java.io.InputStream;
 
 public class YumPrimaryParser {
+
     private static final Logger LOGGER = LoggerFactory.getLogger(YumPrimaryParser.class);
     private final Unmarshaller unmarshaller;
 
@@ -31,6 +32,5 @@ public class YumPrimaryParser {
             LOGGER.error("Cannot communicate with the Yum primary repository xml", e);
             throw new RuntimeException(e);
         }
-
     }
 }

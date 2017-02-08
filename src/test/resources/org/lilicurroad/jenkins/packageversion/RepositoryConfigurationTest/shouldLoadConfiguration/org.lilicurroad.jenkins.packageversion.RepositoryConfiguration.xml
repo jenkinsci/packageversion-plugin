@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<org.lilicurroad.jenkins.packageversion.RepositoryConfiguration plugin="packageversion@1.0-SNAPSHOT">
+    <repos>
+        <entry>
+            <string>centos</string>
+            <org.lilicurroad.jenkins.packageversion.Repository>
+                <url>http://mirror.centos.org/centos/6/os/i386</url>
+                <type>yum</type>
+                <id>centos</id>
+            </org.lilicurroad.jenkins.packageversion.Repository>
+        </entry>
+    </repos>
+</org.lilicurroad.jenkins.packageversion.RepositoryConfiguration>

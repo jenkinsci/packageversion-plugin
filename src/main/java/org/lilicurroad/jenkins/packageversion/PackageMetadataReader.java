@@ -3,7 +3,6 @@ package org.lilicurroad.jenkins.packageversion;
 import org.lilicurroad.jenkins.packageversion.yum.YumMetadataProvider;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,7 +25,6 @@ public class PackageMetadataReader {
     }
 
     public List<PackageMetadata> getPackages() throws IOException {
-//        return packageMetadataProvider.extract(new URL(packageMetadataProvider.getMetatdataFilePath(repoPath)).openStream());
         return packageMetadataProvider.extract(repoPath);
     }
 

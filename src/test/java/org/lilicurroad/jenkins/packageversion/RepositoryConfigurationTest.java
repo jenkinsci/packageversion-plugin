@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.jvnet.hudson.test.JenkinsRule;
+import org.jvnet.hudson.test.recipes.LocalData;
 import org.kohsuke.stapler.StaplerRequest;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -29,7 +30,7 @@ import static org.mockito.Mockito.when;
 public class RepositoryConfigurationTest {
 
     @Rule
-    public JenkinsRule j = new JenkinsRule();
+    public JenkinsRule jenkinsRule = new JenkinsRule();
 
     @Mock
     private StaplerRequest request;
@@ -40,7 +41,7 @@ public class RepositoryConfigurationTest {
     }
 
     @Test
-    public void shouldBeAbleToAddRepositories() throws Exception {
+    public void shouldBeAbleToAddMultipleRepositories() throws Exception {
         final RepositoryConfiguration repositoryConfiguration = new RepositoryConfiguration();
 
         final Repository repository = new Repository("id", "type", "url");
@@ -57,6 +58,33 @@ public class RepositoryConfigurationTest {
         assertThat(repositories, repos(repo("id", "type", "url")));
 
         verify(request, times(1)).bindJSON(any(), any());
+    }
+
+    @Test
+    public void shouldBeAbleToAddSingleRepository() throws Exception {
+        final RepositoryConfiguration repositoryConfiguration = new RepositoryConfiguration();
+
+        final Repository repository = new Repository("id", "type", "url");
+        final Map<String, Object> formData = new HashMap<>();
+        formData.put("repos", JSONObject.fromObject(repository));
+
+        when(request.bindJSON(argThat(new ClassOrSubclassMatcher<>(Repository.class)),
+                              argThat(new JSONObjectMatcher(repository))))
+                .thenReturn(repository);
+
+        repositoryConfiguration.configure(request, JSONObject.fromObject(formData));
+        final List<Repository> repositories = repositoryConfiguration.getRepos().stream().collect(Collectors.toList());
+
+        assertThat(repositories, repos(repo("id", "type", "url")));
+
+        verify(request, times(1)).bindJSON(any(), any());
+    }
+
+    @Test
+    @LocalData
+    public void shouldLoadConfiguration() throws Exception {
+        final RepositoryConfiguration repositoryConfiguration = RepositoryConfiguration.get();
+        assertThat(repositoryConfiguration.getRepos(), repos(repo("centos", "yum", "http://mirror.centos.org/centos/6/os/i386")));
     }
 
     public class JSONObjectMatcher extends TypeSafeMatcher<JSONObject> {

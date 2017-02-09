@@ -18,7 +18,7 @@ public class YumRepomdParser {
     public YumRepomdParser() {
         try {
             this.unmarshaller = JAXBContext.newInstance(Repomd.class).createUnmarshaller();
-        } catch (JAXBException e) {
+        } catch (final JAXBException e) {
             throw new RuntimeException("Couldn't initialize Yum Metadata XML parser.", e);
         }
     }
@@ -27,7 +27,7 @@ public class YumRepomdParser {
         try {
             final JAXBElement<Repomd> jaxbElement = unmarshaller.unmarshal(new StreamSource(inputStream), Repomd.class);
             return jaxbElement.getValue();
-        } catch (JAXBException e) {
+        } catch (final JAXBException e) {
             LOGGER.error("Cannot communicate with the Yum repomd repository xml", e);
             throw new RuntimeException(e);
         }

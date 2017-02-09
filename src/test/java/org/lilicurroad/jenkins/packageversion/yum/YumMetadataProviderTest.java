@@ -1,5 +1,7 @@
 package org.lilicurroad.jenkins.packageversion.yum;
 
+import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.lilicurroad.jenkins.packageversion.PackageMetadata;
 import org.lilicurroad.jenkins.packageversion.yum.model.repo.Data;
@@ -14,24 +16,36 @@ import static org.lilicurroad.jenkins.packageversion.yum.PackageMetadataMatcher.
 
 public class YumMetadataProviderTest {
 
+    @Before
+    public void setUp() {
+        System.setProperty("java.protocol.handler.pkgs", "org.lilicurroad.jenkins.packageversion.yum");
+    }
+
     @Test
     public void shouldParseMetaData() throws Exception {
-
-        System.setProperty("java.protocol.handler.pkgs", "org.lilicurroad.jenkins.packageversion.yum");
-
         final YumMetadataProvider yumMetadataProvider = new YumMetadataProvider();
-        final List<Data> data = yumMetadataProvider.getData("classpath:org/lilicurroad/jenkins/packageversion/yum");
+        final List<Data> data = yumMetadataProvider.getData("classpath:/org/lilicurroad/jenkins/packageversion/yum/valid");
 
         assertThat(data, listData(dataByType("primary"), dataByType("other")));
     }
 
+    @Test(expected = RuntimeException.class)
+    public void shouldExceptWhenParsingMissing() throws Exception {
+        final YumMetadataProvider yumMetadataProvider = new YumMetadataProvider();
+        final List<Data> data = yumMetadataProvider.getData("classpath:/org/lilicurroad/jenkins/packageversion/yum/missing");
+    }
+
+    @Test(expected = RuntimeException.class)
+    @Ignore("validating xsd?")
+    public void shouldExceptWhenParsingInvalid() throws Exception {
+        final YumMetadataProvider yumMetadataProvider = new YumMetadataProvider();
+        final List<Data> data = yumMetadataProvider.getData("classpath:/org/lilicurroad/jenkins/packageversion/yum/invalid");
+    }
+
     @Test
     public void shouldParsePrimary() throws Exception {
-
-        System.setProperty("java.protocol.handler.pkgs", "org.lilicurroad.jenkins.packageversion.yum");
-
         final YumMetadataProvider yumMetadataProvider = new YumMetadataProvider();
-        final List<PackageMetadata> packages = yumMetadataProvider.getPackages("classpath:org/lilicurroad/jenkins/packageversion/yum/repodata/primary.xml.gz");
+        final List<PackageMetadata> packages = yumMetadataProvider.getPackages("classpath:/org/lilicurroad/jenkins/packageversion/yum/valid/repodata/primary.xml.gz");
 
         assertThat(packages, listPackageMetadata(packageName("package_1"), packageName("package_2")));
     }

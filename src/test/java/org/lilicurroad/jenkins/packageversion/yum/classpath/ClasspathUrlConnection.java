@@ -20,6 +20,6 @@ public class ClasspathUrlConnection extends URLConnection {
     }
 
     public InputStream getInputStream() throws IOException {
-        return ClassLoader.class.getResourceAsStream("/" + getURL().getFile());
+        return ClassLoader.class.getResourceAsStream(getURL().getFile());
     }
 }

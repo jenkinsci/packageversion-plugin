@@ -26,7 +26,7 @@
         enkins plugin which when configured with repository and package name will add a build step requiring selection of the specified package version.
         This package version is added as
     </description>
-    <url>https://wiki.jenkins-ci.org/display/JENKINS/packageversion</url>
+    <url>https://wiki.jenkins-ci.org/display/JENKINS/Package+Version+Plugin</url>
 
     <licenses>
         <license>

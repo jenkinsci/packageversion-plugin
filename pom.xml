@@ -42,19 +42,18 @@
       </developer>
     </developers>
 
-<!--
     <connection>scm:git:git://github.com/jenkinsci/${project.artifactId}-plugin.git</connection>
     <developerConnection>scm:git:git@github.com:jenkinsci/${project.artifactId}-plugin.git</developerConnection>
     <url>http://github.com/jenkinsci/${project.artifactId}-plugin</url>
--->
 
+<!--
     <scm>
         <connection>scm:git:https://github.com/johnlayton/lilicurroad.git</connection>
         <developerConnection>scm:git:https://github.com/johnlayton/lilicurroad.git</developerConnection>
         <url>https://github.com/johnlayton/lilicurroad.git</url>
         <tag>1.0</tag>
     </scm>
-
+-->
     <repositories>
         <repository>
             <id>repo.jenkins-ci.org</id>
